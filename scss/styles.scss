@@ -1,0 +1,62 @@
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10em) scale(0);
+  }
+}
+:root {
+  --fire-color: #ff5000;
+}
+.fire-container {
+  $duration: 1s;
+  $numberOfParticles: 200;
+  $particleSize: 5em;
+
+  display: none;
+  pointer-events: none;
+  user-select: none;
+
+  @supports ((-webkit-filter: blur(2px)) or (filter: blur(2px))) and (mix-blend-mode: screen) and (transform: scale(0)) {
+    bottom:-5vh;
+    display: block;
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+    height: 25vh;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    width: 100%;
+
+    &-config {
+      content: "#{$numberOfParticles}";
+    }
+
+    &-particle {
+      animation: rise $duration ease-in infinite;
+      background-image: radial-gradient(var(--fire-color) 20%, rgba(255, 80, 0, 0) 70%);
+      border-radius: 50%;
+      bottom: 0;
+      height: $particleSize;
+      mix-blend-mode: screen;
+      opacity: 0;
+      position: absolute;
+      width: $particleSize;
+    }
+
+    @for $p from 1 through 200 {
+      &-particle:nth-of-type(#{$p}) {
+        animation-delay: $duration * random();
+        left: calc((100% - #{$particleSize}) * #{($p - 1) / $numberOfParticles})
+      }
+    }
+  }
+}

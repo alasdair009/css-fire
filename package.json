@@ -1,0 +1,27 @@
+{
+  "name": "css-fire",
+  "version": "1.0.0",
+  "description": "A fire effect for the web without using images or video",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "build-css": "node-sass --include-path scss scss/styles.scss   css/styles.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alasdair009/css-fire.git"
+  },
+  "author": "Alasdair Macrae",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alasdair009/css-fire/issues"
+  },
+  "homepage": "https://github.com/alasdair009/css-fire#readme",
+  "devDependencies": {
+    "node-sass": "^4.13.1",
+    "nodemon": "^2.0.2"
+  }
+}
